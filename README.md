@@ -4,6 +4,7 @@ This uses nokogiri gem for HTML parsing.
 
 Please Note:
 * It is taking hardcoded path of HTML file (Please update the path as per your director structure).
+* Currently, To avoid test suite count as test case i have hardcoded test suite value. But it needs to be generic.
 * Current HTML file has wrong number of test case counts, Doesn't have pie chart included in it.
 
 It Has 3 methods - 
