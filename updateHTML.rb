@@ -12,7 +12,7 @@ def calculateTestCaseCount()
   testCaseNames = []
   doc.xpath('//h3[@class=\'title\']').each do |link|
     value = link.content
-    if !(value.include? "TestSuiteName")
+    if !(value.include? "BlibliMobile")
       if !(testCaseNames.include? value)
         testCaseNames.push(value)
         $total_count = $total_count + 1
