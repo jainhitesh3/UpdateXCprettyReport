@@ -3,8 +3,8 @@
 This uses nokogiri gem for HTML parsing.
 
 Please Note:
-* It is taking hardcoded path of HTML file.
-* Current HTML file has wrong number of test case counts, Doesnt't have pie chart included in it.
+* It is taking hardcoded path of HTML file (Please update the path as per your director structure).
+* Current HTML file has wrong number of test case counts, Doesn't have pie chart included in it.
 
 It Has 3 methods - 
 * First method is to count the exact number of test cases (failing/pass).
