@@ -5,9 +5,10 @@ require 'open-uri'
 $total_count = 0
 $pass_count = 0
 $fail_count = 0
+$filename = "/Users/hiteshjain/Downloads/report_final_1.html"
 
 def calculateTestCaseCount()
-  file = File.read('/Users/hiteshjain/Downloads/report_final_1.html')
+  file = File.read($filename)
   doc = Nokogiri::HTML(file)
   testCaseNames = []
   doc.xpath('//h3[@class=\'title\']').each do |link|
@@ -26,12 +27,12 @@ def calculateTestCaseCount()
 end
 
 def showUpdatedTestCount()
-  doc = File.open("/Users/hiteshjain/Downloads/report_final_1.html") { |f| Nokogiri::HTML(f) }
+  doc = File.open($filename) { |f| Nokogiri::HTML(f) }
   h1 = doc.at_xpath "//*[@id=\"test-count\"]/span"
   h1.content = $total_count
   h1 = doc.at_xpath "//*[@id=\"fail-count\"]/span"
   h1.content = $fail_count
-  File.write("/Users/hiteshjain/Downloads/report_final_1.html",doc.to_html)
+  File.write($filename,doc.to_html)
 end
 
 def addPieChart()
@@ -64,10 +65,13 @@ def addPieChart()
 
   pieChart["$PASS_COUNT"] = $pass_count.to_s
   pieChart["$FAIL_COUNT"] = $fail_count.to_s
-  doc = File.open("/Users/hiteshjain/Downloads/report_final_1.html") { |f| Nokogiri::HTML(f) }
+  doc = File.open($filename) { |f| Nokogiri::HTML(f) }
+  addCss = doc.at_xpath "/html/head/style"
+  contentOfCss = addCss.content + ".piechart {float: left; margin-left: 500px; margin-top: 68px; margin-right: 120px;}" + "rect {fill-opacity: 0.0 ;}"
+  addCss.content = contentOfCss
   h1 = doc.at_xpath "/html/body/header"
   h1.add_next_sibling pieChart
-  File.write("/Users/hiteshjain/Downloads/report_final_1.html",doc.to_html)
+  File.write($filename,doc.to_html)
 end
 
 calculateTestCaseCount()
