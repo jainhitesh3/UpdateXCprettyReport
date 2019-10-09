@@ -31,7 +31,9 @@ def showUpdatedTestCount(filename)
   h1 = doc.at_xpath "//*[@id=\"test-count\"]/span"
   h1.content = $total_count
   h1 = doc.at_xpath "//*[@id=\"fail-count\"]/span"
-  h1.content = $fail_count
+  if h1 != nil
+    h1.content = $fail_count
+  end
   File.write(filename,doc.to_html)
 end
 
